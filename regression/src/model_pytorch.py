@@ -123,7 +123,7 @@ class RegressionPredictor:
 
         self.model_with_adduct = GinsengT5RegressionInference(args=args_with_adduct)
         self.model_with_adduct.load_state_dict(
-            torch.load(args_with_adduct.checkpoint_path)
+            torch.load(args_with_adduct.checkpoint_path)["state_dict"]
         )
         self.model_with_adduct.eval()
 
@@ -131,7 +131,7 @@ class RegressionPredictor:
             args=args_without_adduct
         )
         self.model_without_adduct.load_state_dict(
-            torch.load(args_without_adduct.checkpoint_path)
+            torch.load(args_without_adduct.checkpoint_path)["state_dict"]
         )
         self.model_without_adduct.eval()
 
