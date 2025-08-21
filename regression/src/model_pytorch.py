@@ -122,13 +122,17 @@ class RegressionPredictor:
         self.args_without_adduct = args_without_adduct
 
         self.model_with_adduct = GinsengT5RegressionInference(args=args_with_adduct)
-        self.model.load_state_dict(torch.load(args_with_adduct.checkpoint_path))
+        self.model_with_adduct.load_state_dict(
+            torch.load(args_with_adduct.checkpoint_path)
+        )
         self.model_with_adduct.eval()
 
         self.model_without_adduct = GinsengT5RegressionInference(
             args=args_without_adduct
         )
-        self.model.load_state_dict(torch.load(args_without_adduct.checkpoint_path))
+        self.model_without_adduct.load_state_dict(
+            torch.load(args_without_adduct.checkpoint_path)
+        )
         self.model_without_adduct.eval()
 
     def get_features(self, molecule, pretrained_name=None):
